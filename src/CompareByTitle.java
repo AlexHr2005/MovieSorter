@@ -4,6 +4,13 @@ public class CompareByTitle implements Comparator<Movie> {
 
     @Override
     public int compare(Movie o1, Movie o2) {
-        return o1.getTitle().compareTo(o2.getTitle());
+        if(!o1.getTitle().contains("The Matrix") && o2.getTitle().contains("The Matrix")) {
+            return 1;
+        }
+        else if(o1.getTitle().contains("The Matrix") && !o2.getTitle().contains("The Matrix")) {
+            System.out.println(o1.getTitle() + " " + o2.getTitle());
+            return -1;
+        }
+        else return o1.getTitle().compareTo(o2.getTitle());
     }
 }
