@@ -18,7 +18,7 @@ public class Movie {
     }
 
     public static Movie stringToMovie(String str) {
-        List<String> fields = new ArrayList<>(Arrays.asList(str.split("|")));
+        List<String> fields = new ArrayList<>(Arrays.asList(str.split("\\|")));
         Movie newMovie = new Movie(fields.get(0), fields.get(1), fields.get(2));
         return newMovie;
     }

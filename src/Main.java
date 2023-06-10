@@ -1,14 +1,18 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Comparator<Movie> compareByTitle = new CompareByTitle();
-        Comparator<Movie> finalComparator = compareByTitle.thenComparing(Movie::getGenre)
-                .thenComparing(Movie::getMainActor);
+    public static void main(String[] args) throws IOException {
+        List<Movie> movies = new ArrayList<>();
 
+        BufferedReader fileReader = new BufferedReader(new FileReader("src/movies.txt"));
+        String line;
+        while((line = fileReader.readLine()) != null) {
+            movies.add(Movie.stringToMovie(line));
+        }
 
+        CompareByTitle compareByTitle = new CompareByTitle();
+        Comparator<Movie> comparator = compareByTitle.thenComparing(Movie::getGenre).thenComparing(Movie::getMainActor);
+        movies.sort(comparator);
     }
 }
